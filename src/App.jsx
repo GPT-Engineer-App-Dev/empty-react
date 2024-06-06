@@ -3,6 +3,8 @@ import Index from "./pages/Index.jsx";
 import Login from "./pages/Login.jsx";
 import { useSupabaseAuth } from "./integrations/supabase/auth.jsx";
 import { Button, Container, VStack, Text } from "@chakra-ui/react";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Private from "./pages/Private.jsx";
 
 function App() {
   const { session, logout } = useSupabaseAuth();
@@ -11,7 +13,8 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<Index />} />
-      <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/private" element={<ProtectedRoute><Private /></ProtectedRoute>} />
       </Routes>
       <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
         <VStack spacing={4}>
